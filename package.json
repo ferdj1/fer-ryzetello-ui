@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \\\"node_modules/(?!@toolz/allow-react)/\\\" --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,7 +46,8 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
-    "node-sass": "^4.14.1"
-  },
-  "type": "module"
+    "node-sass": "^4.14.1",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.13",
+    "babel-jest": "^26.6.3"
+  }
 }
