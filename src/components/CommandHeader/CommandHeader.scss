@@ -1,0 +1,29 @@
+.command-header {
+  display: flex;
+  margin: 40px 20px;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 20px 5px 5px;
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    background: #393939;
+    box-shadow: 0px 5px 18px 0px rgba(14, 14, 14, 0.4);
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 40px;
+
+    transition: all 0.4s;
+
+    &:hover {
+      background: #2b2b2b;
+      cursor: pointer;
+      transform: translateY(-2px);
+    }
+  }
+}

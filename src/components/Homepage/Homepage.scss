@@ -1,0 +1,11 @@
+.homepage {
+  background: #2D3748;
+  height: 100vh;
+  padding-top: 75px;
+
+  &__joysticks {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

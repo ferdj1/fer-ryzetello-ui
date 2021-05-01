@@ -1,0 +1,90 @@
+import * as React from "react"
+import JoyStick from "../JoyStick/JoyStick";
+import "./VerticalRotationalJoyStick.scss";
+import {
+  GiAnticlockwiseRotation,
+  GiClockwiseRotation, HiFastForward,
+  ImArrowDownRight2,
+  ImArrowUpRight2, IoMdArrowRoundBack,
+  IoMdArrowRoundDown, IoMdArrowRoundForward, IoMdArrowRoundUp, IoMdFastforward, TiArrowLoop
+} from "react-icons/all";
+import {executeCommand} from "../../apiClient/CommandService";
+import {BACK, CCW, CW, DOWN, FORWARD, LEFT, RIGHT, UP} from "../../constants/CommandConstants";
+import {DEFAULT_DISTANCE, DEFAULT_TURN_DEGREES} from "../../constants/CommandParameterDefaults";
+
+function VerticalRotationalJoyStick(props) {
+  function topClickHandler() {
+    let command = {
+      name: UP,
+      params: [DEFAULT_DISTANCE]
+    }
+
+    executeCommand(command)
+      .then(response => {
+        console.log('OK');
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function rightClickHandler() {
+    let command = {
+      name: CCW,
+      params: [DEFAULT_TURN_DEGREES]
+    }
+
+    executeCommand(command)
+      .then(response => {
+        console.log('OK');
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function leftClickHandler() {
+    let command = {
+      name: CW,
+      params: [DEFAULT_TURN_DEGREES]
+    }
+
+    executeCommand(command)
+      .then(response => {
+        console.log('OK');
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function bottomClickHandler() {
+    let command = {
+      name: DOWN,
+      params: [DEFAULT_DISTANCE]
+    }
+
+    executeCommand(command)
+      .then(response => {
+        console.log('OK');
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function centerClickHandler() {
+    console.log('Center command not set.');
+  }
+
+  return (
+    <JoyStick topIcon={<HiFastForward className="rotate-ccw-90"/>}
+              rightIcon={<TiArrowLoop />}
+              leftIcon={<TiArrowLoop className="flip-horizontal" />}
+              bottomIcon={<HiFastForward className="rotate-cw-90"/>}
+              topClickHandler={topClickHandler}
+              rightClickHandler={rightClickHandler}
+              leftClickHandler={leftClickHandler}
+              bottomClickHandler={bottomClickHandler}
+              centerClickHandler={centerClickHandler}
+    />
+  )
+}
+
+export default VerticalRotationalJoyStick
