@@ -10,6 +10,8 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "@toolz/allow": "^1.0.1",
+    "@toolz/is-a-regular-object-react": "^1.0.0",
     "framer-motion": "^4.1.4",
     "moment": "^2.29.1",
     "react": "^17.0.2",
@@ -23,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \\\"node_modules/(?!@toolz/allow-react)/\\\" --env=jsdom",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
