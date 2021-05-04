@@ -15,6 +15,7 @@ import {DEFAULT_DISTANCE, DEFAULT_TURN_DEGREES} from "../../constants/CommandPar
 function VerticalRotationalJoyStick(props) {
   function topClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: UP,
       params: [DEFAULT_DISTANCE]
     }
@@ -29,6 +30,7 @@ function VerticalRotationalJoyStick(props) {
 
   function rightClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: CCW,
       params: [DEFAULT_TURN_DEGREES]
     }
@@ -43,6 +45,7 @@ function VerticalRotationalJoyStick(props) {
 
   function leftClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: CW,
       params: [DEFAULT_TURN_DEGREES]
     }
@@ -57,6 +60,7 @@ function VerticalRotationalJoyStick(props) {
 
   function bottomClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: DOWN,
       params: [DEFAULT_DISTANCE]
     }

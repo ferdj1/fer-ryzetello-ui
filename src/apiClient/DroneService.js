@@ -19,10 +19,9 @@ const request = (options) => {
     );
 };
 
-export function executeCommand(command) {
+export function getAllDrones() {
   return request({
-    url: BACKEND_URL + "/command/execute",
-    body: JSON.stringify(command),
-    method: 'POST'
+    url: BACKEND_URL + "/drones/",
+    method: 'GET'
   });
 }

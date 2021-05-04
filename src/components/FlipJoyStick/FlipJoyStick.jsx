@@ -18,6 +18,7 @@ import {
 function FlipJoyStick(props) {
   function topClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: FLIP,
       params: [FLIP_FORWARD]
     }
@@ -32,6 +33,7 @@ function FlipJoyStick(props) {
 
   function rightClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: FLIP,
       params: [FLIP_RIGHT]
     }
@@ -46,6 +48,7 @@ function FlipJoyStick(props) {
 
   function leftClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: FLIP,
       params: [FLIP_LEFT]
     }
@@ -60,6 +63,7 @@ function FlipJoyStick(props) {
 
   function bottomClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: FLIP,
       params: [FLIP_BACK]
     }

@@ -11,6 +11,7 @@ import {DEFAULT_DISTANCE} from "../../constants/CommandParameterDefaults";
 function FlatPlaneJoyStick(props) {
   function topClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: FORWARD,
       params: [DEFAULT_DISTANCE]
     }
@@ -25,6 +26,7 @@ function FlatPlaneJoyStick(props) {
 
   function rightClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: RIGHT,
       params: [DEFAULT_DISTANCE]
     }
@@ -39,6 +41,7 @@ function FlatPlaneJoyStick(props) {
 
   function leftClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: LEFT,
       params: [DEFAULT_DISTANCE]
     }
@@ -53,6 +56,7 @@ function FlatPlaneJoyStick(props) {
 
   function bottomClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: BACK,
       params: [DEFAULT_DISTANCE]
     }
