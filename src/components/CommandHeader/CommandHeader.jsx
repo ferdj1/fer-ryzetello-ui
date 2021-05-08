@@ -22,6 +22,7 @@ import {
   RiFlightLandFill,
   RiFlightTakeoffFill
 } from "react-icons/all";
+import {isCommandValid} from "../../validator/CommandValidator";
 
 function CommandHeader(props) {
   const [isFlying, setFlying] = useState(false);
@@ -29,11 +30,16 @@ function CommandHeader(props) {
 
   function flyingToggleHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: isFlying ? LAND : TAKEOFF,
       params: []
     }
 
     setFlying(!isFlying);
+
+    if (!isCommandValid(command)) {
+      return;
+    }
 
     executeCommand(command)
       .then(response => {
@@ -45,12 +51,16 @@ function CommandHeader(props) {
 
   function streamToggleHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: isStreaming ? STREAM_OFF : STREAM_ON,
       params: []
     }
 
     setStreaming(!isStreaming);
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
         console.log('OK');
@@ -61,10 +71,14 @@ function CommandHeader(props) {
 
   function emergencyClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: EMERGENCY,
       params: []
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
         console.log('OK');
@@ -75,10 +89,14 @@ function CommandHeader(props) {
 
   function bottomClickHandler() {
     let command = {
+      droneId: props.selectedDroneId,
       name: BACK,
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
         console.log('OK');

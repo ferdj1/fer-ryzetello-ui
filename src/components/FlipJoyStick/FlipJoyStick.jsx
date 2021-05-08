@@ -14,8 +14,11 @@ import {
   FLIP_LEFT,
   FLIP_RIGHT
 } from "../../constants/CommandParameterDefaults";
+import {isCommandValid} from "../../validator/CommandValidator";
+import {useToast} from "@chakra-ui/react";
 
 function FlipJoyStick(props) {
+
   function topClickHandler() {
     let command = {
       droneId: props.selectedDroneId,
@@ -23,9 +26,14 @@ function FlipJoyStick(props) {
       params: [FLIP_FORWARD]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -38,9 +46,14 @@ function FlipJoyStick(props) {
       params: [FLIP_RIGHT]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -53,9 +66,14 @@ function FlipJoyStick(props) {
       params: [FLIP_LEFT]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -68,9 +86,14 @@ function FlipJoyStick(props) {
       params: [FLIP_BACK]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });

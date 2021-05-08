@@ -7,6 +7,7 @@ import {IoMdArrowRoundBack,
 import {executeCommand} from "../../apiClient/CommandService";
 import {BACK, FORWARD, LEFT, RIGHT, UP} from "../../constants/CommandConstants";
 import {DEFAULT_DISTANCE} from "../../constants/CommandParameterDefaults";
+import {isCommandValid} from "../../validator/CommandValidator";
 
 function FlatPlaneJoyStick(props) {
   function topClickHandler() {
@@ -16,9 +17,14 @@ function FlatPlaneJoyStick(props) {
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -31,9 +37,14 @@ function FlatPlaneJoyStick(props) {
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -46,9 +57,14 @@ function FlatPlaneJoyStick(props) {
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -61,9 +77,14 @@ function FlatPlaneJoyStick(props) {
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });

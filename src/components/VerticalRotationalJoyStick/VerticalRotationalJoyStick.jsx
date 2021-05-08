@@ -11,6 +11,7 @@ import {
 import {executeCommand} from "../../apiClient/CommandService";
 import {BACK, CCW, CW, DOWN, FORWARD, LEFT, RIGHT, UP} from "../../constants/CommandConstants";
 import {DEFAULT_DISTANCE, DEFAULT_TURN_DEGREES} from "../../constants/CommandParameterDefaults";
+import {isCommandValid} from "../../validator/CommandValidator";
 
 function VerticalRotationalJoyStick(props) {
   function topClickHandler() {
@@ -20,9 +21,14 @@ function VerticalRotationalJoyStick(props) {
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -35,9 +41,14 @@ function VerticalRotationalJoyStick(props) {
       params: [DEFAULT_TURN_DEGREES]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -50,9 +61,14 @@ function VerticalRotationalJoyStick(props) {
       params: [DEFAULT_TURN_DEGREES]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -65,9 +81,14 @@ function VerticalRotationalJoyStick(props) {
       params: [DEFAULT_DISTANCE]
     }
 
+    if (!isCommandValid(command)) {
+      return;
+    }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });

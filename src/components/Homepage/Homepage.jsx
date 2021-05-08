@@ -36,16 +36,27 @@ function Homepage(props) {
     })
   }
 
+  function displayExecuteError() {
+    toast({
+      title: "Error",
+      description: "Can't execute!",
+      status: "error",
+      duration: 2000,
+      isClosable: true
+    })
+  }
 
   return (
     <div className="homepage">
       <DroneSelector drones={drones} setSelectedDroneId={setSelectedDroneId}/>
-      <CommandHeader selectedDroneId={selectedDroneId}/>
-      <div className="homepage__joysticks">
-        <VerticalRotationalJoyStick selectedDroneId={selectedDroneId}/>
-        <FlatPlaneJoyStick selectedDroneId={selectedDroneId} />
-        <FlipJoyStick selectedDroneId={selectedDroneId} />
-      </div>
+      { selectedDroneId && <>
+        <CommandHeader selectedDroneId={selectedDroneId}/>
+        <div className="homepage__joysticks">
+          <VerticalRotationalJoyStick selectedDroneId={selectedDroneId} displayExecuteError={displayExecuteError}/>
+          <FlatPlaneJoyStick selectedDroneId={selectedDroneId} displayExecuteError={displayExecuteError}/>
+          <FlipJoyStick selectedDroneId={selectedDroneId} displayExecuteError={displayExecuteError}/>
+        </div>
+      </>}
     </div>
   )
 }
