@@ -37,7 +37,7 @@ function VerticalRotationalJoyStick(props) {
   function rightClickHandler() {
     let command = {
       droneId: props.selectedDroneId,
-      name: CCW,
+      name: CW,
       params: [DEFAULT_TURN_DEGREES]
     }
 
@@ -57,7 +57,7 @@ function VerticalRotationalJoyStick(props) {
   function leftClickHandler() {
     let command = {
       droneId: props.selectedDroneId,
-      name: CW,
+      name: CCW,
       params: [DEFAULT_TURN_DEGREES]
     }
 
@@ -100,8 +100,8 @@ function VerticalRotationalJoyStick(props) {
 
   return (
     <JoyStick topIcon={<HiFastForward className="rotate-ccw-90"/>}
-              rightIcon={<TiArrowLoop />}
-              leftIcon={<TiArrowLoop className="flip-horizontal" />}
+              rightIcon={<TiArrowLoop className="flip-horizontal" />}
+              leftIcon={<TiArrowLoop />}
               bottomIcon={<HiFastForward className="rotate-cw-90"/>}
               topClickHandler={topClickHandler}
               rightClickHandler={rightClickHandler}

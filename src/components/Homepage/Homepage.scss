@@ -1,11 +1,26 @@
 .homepage {
   background: #2D3748;
   height: 100vh;
-  padding-top: 75px;
+  padding-top: 65px;
 
-  &__joysticks {
+  &__joysticks-stream {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    &__stream {
+      width: 620px;
+      height: 360px;
+      background: #2e2f32;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+
+      &__icon {
+        font-size: 60px;
+        color: #f0f0f0;
+      }
+    }
   }
 }

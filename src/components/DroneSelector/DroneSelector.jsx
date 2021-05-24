@@ -9,9 +9,9 @@ function DroneSelector(props) {
 
   return (
     <div className="drone-selector">
-      <Select placeholder="Select drone" size="md" onChange={handleChange}>
+      <Select className="drone-selector__select" placeholder="Select drone" size="md" bg="#ffffff" borderColor="#ffffff" onChange={handleChange}>
         {
-          props.drones.map((drone, i) => <option value={drone.id}>{drone.id}</option>)
+          props.droneIds.map((droneId, i) => <option value={droneId}>{droneId}</option>)
         }
       </Select>
     </div>

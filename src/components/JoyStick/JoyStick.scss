@@ -44,6 +44,10 @@
       transform: translateY(-2px);
     }
   }
+
+  &__center {
+    opacity: 0;
+  }
 }
 
 .flip-horizontal {

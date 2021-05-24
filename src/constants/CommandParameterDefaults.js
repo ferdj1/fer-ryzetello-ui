@@ -1,4 +1,4 @@
-export const DEFAULT_DISTANCE = '20';
+export const DEFAULT_DISTANCE = '50';
 export const DEFAULT_TURN_DEGREES = '20';
 
 export const FLIP_LEFT = 'l';

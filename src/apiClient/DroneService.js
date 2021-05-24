@@ -25,3 +25,10 @@ export function getAllDrones() {
     method: 'GET'
   });
 }
+
+export function getAllDroneIds() {
+  return request({
+    url: BACKEND_URL + "/drones/ids",
+    method: 'GET'
+  });
+}

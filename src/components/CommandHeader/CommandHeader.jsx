@@ -3,7 +3,7 @@ import "./CommandHeader.scss";
 import {executeCommand} from "../../apiClient/CommandService";
 import {
   BACK,
-  EMERGENCY,
+  EMERGENCY, FLIP,
   FORWARD,
   LAND,
   LEFT,
@@ -13,7 +13,13 @@ import {
   TAKEOFF,
   UP
 } from "../../constants/CommandConstants";
-import {DEFAULT_DISTANCE} from "../../constants/CommandParameterDefaults";
+import {
+  DEFAULT_DISTANCE,
+  FLIP_BACK,
+  FLIP_FORWARD,
+  FLIP_LEFT,
+  FLIP_RIGHT
+} from "../../constants/CommandParameterDefaults";
 import {useState} from "react";
 import {
   BsFillExclamationOctagonFill,
@@ -87,11 +93,11 @@ function CommandHeader(props) {
     });
   }
 
-  function bottomClickHandler() {
+  function forwardFlipHandler() {
     let command = {
       droneId: props.selectedDroneId,
-      name: BACK,
-      params: [DEFAULT_DISTANCE]
+      name: FLIP,
+      params: [FLIP_FORWARD]
     }
 
     if (!isCommandValid(command)) {
@@ -99,7 +105,69 @@ function CommandHeader(props) {
     }
     executeCommand(command)
       .then(response => {
-        console.log('OK');
+        if (!response) {
+          props.displayExecuteError();
+        }
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function rightFlipHandler() {
+    let command = {
+      droneId: props.selectedDroneId,
+      name: FLIP,
+      params: [FLIP_RIGHT]
+    }
+
+    if (!isCommandValid(command)) {
+      return;
+    }
+    executeCommand(command)
+      .then(response => {
+        if (!response) {
+          props.displayExecuteError();
+        }
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function leftFlipHandler() {
+    let command = {
+      droneId: props.selectedDroneId,
+      name: FLIP,
+      params: [FLIP_LEFT]
+    }
+
+    if (!isCommandValid(command)) {
+      return;
+    }
+    executeCommand(command)
+      .then(response => {
+        if (!response) {
+          props.displayExecuteError();
+        }
+      }).catch(error => {
+      console.log('ERROR');
+    });
+  }
+
+  function backFlipHandler() {
+    let command = {
+      droneId: props.selectedDroneId,
+      name: FLIP,
+      params: [FLIP_BACK]
+    }
+
+    if (!isCommandValid(command)) {
+      return;
+    }
+    executeCommand(command)
+      .then(response => {
+        if (!response) {
+          props.displayExecuteError();
+        }
       }).catch(error => {
       console.log('ERROR');
     });
@@ -107,14 +175,31 @@ function CommandHeader(props) {
 
   return (
     <div className="command-header">
-      <div className="command-header__item" onClick={flyingToggleHandler}>
-        {isFlying ? <RiFlightLandFill/>: <RiFlightTakeoffFill/>}
+      <div className="command-header__general-container">
+        <div className="command-header__item" onClick={flyingToggleHandler}>
+          {isFlying ? <RiFlightLandFill/>: <RiFlightTakeoffFill/>}
+        </div>
+        <div className="command-header__item" onClick={streamToggleHandler}>
+          {isStreaming ? <FaVideoSlash/>: <FaVideo/>}
+        </div>
+        <div className="command-header__item" onClick={emergencyClickHandler}>
+          <BsFillExclamationOctagonFill />
+        </div>
       </div>
-      <div className="command-header__item" onClick={streamToggleHandler}>
-        {isStreaming ? <FaVideoSlash/>: <FaVideo/>}
-      </div>
-      <div className="command-header__item" onClick={emergencyClickHandler}>
-        <BsFillExclamationOctagonFill />
+      <div className="command-header__flip-container">
+        <div className="command-header__flip-container__title">Flip</div>
+        <div className="command-header__flip-container__item" onClick={forwardFlipHandler}>
+          Forward
+        </div>
+        <div className="command-header__flip-container__item" onClick={rightFlipHandler}>
+          Right
+        </div>
+        <div className="command-header__flip-container__item" onClick={backFlipHandler}>
+          Back
+        </div>
+        <div className="command-header__flip-container__item" onClick={leftFlipHandler}>
+          Left
+        </div>
       </div>
     </div>
   )
