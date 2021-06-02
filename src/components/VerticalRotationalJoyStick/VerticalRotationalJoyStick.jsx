@@ -1,24 +1,27 @@
 import * as React from "react"
 import JoyStick from "../JoyStick/JoyStick";
 import "./VerticalRotationalJoyStick.scss";
-import {
-  GiAnticlockwiseRotation,
-  GiClockwiseRotation, HiFastForward,
-  ImArrowDownRight2,
-  ImArrowUpRight2, IoMdArrowRoundBack,
-  IoMdArrowRoundDown, IoMdArrowRoundForward, IoMdArrowRoundUp, IoMdFastforward, TiArrowLoop
-} from "react-icons/all";
+import {HiFastForward, TiArrowLoop} from "react-icons/all";
 import {executeCommand} from "../../apiClient/CommandService";
-import {BACK, CCW, CW, DOWN, FORWARD, LEFT, RIGHT, UP} from "../../constants/CommandConstants";
+import {CCW, CW, DOWN, RC, UP} from "../../constants/CommandConstants";
 import {DEFAULT_DISTANCE, DEFAULT_TURN_DEGREES} from "../../constants/CommandParameterDefaults";
 import {isCommandValid} from "../../validator/CommandValidator";
 
 function VerticalRotationalJoyStick(props) {
   function topClickHandler() {
-    let command = {
-      droneId: props.selectedDroneId,
-      name: UP,
-      params: [DEFAULT_DISTANCE]
+    let command;
+    if (props.lowLight) {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RC,
+        params: [0, 0, DEFAULT_DISTANCE, 0]
+      }
+    } else {
+      command = {
+        droneId: props.selectedDroneId,
+        name: UP,
+        params: [DEFAULT_DISTANCE]
+      }
     }
 
     if (!isCommandValid(command)) {
@@ -75,10 +78,19 @@ function VerticalRotationalJoyStick(props) {
   }
 
   function bottomClickHandler() {
-    let command = {
-      droneId: props.selectedDroneId,
-      name: DOWN,
-      params: [DEFAULT_DISTANCE]
+    let command;
+    if (props.lowLight) {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RC,
+        params: [0, 0, '-'+DEFAULT_DISTANCE, 0]
+      }
+    } else {
+      command = {
+        droneId: props.selectedDroneId,
+        name: DOWN,
+        params: [DEFAULT_DISTANCE]
+      }
     }
 
     if (!isCommandValid(command)) {
@@ -100,8 +112,8 @@ function VerticalRotationalJoyStick(props) {
 
   return (
     <JoyStick topIcon={<HiFastForward className="rotate-ccw-90"/>}
-              rightIcon={<TiArrowLoop className="flip-horizontal" />}
-              leftIcon={<TiArrowLoop />}
+              rightIcon={<TiArrowLoop className="flip-horizontal"/>}
+              leftIcon={<TiArrowLoop/>}
               bottomIcon={<HiFastForward className="rotate-cw-90"/>}
               topClickHandler={topClickHandler}
               rightClickHandler={rightClickHandler}

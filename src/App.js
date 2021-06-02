@@ -15,6 +15,7 @@ import {getAllDroneIds, getAllDrones} from "./apiClient/DroneService";
 function App() {
   const [droneIds, setDroneIds] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [lowLight, setLowLight] = useState(false);
 
   const [selectedDroneId, setSelectedDroneId] = useState(null);
 
@@ -62,9 +63,9 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Header/>
+      <Header lowLight={lowLight} setLowLight={setLowLight}/>
       <Switch>
-        <Route exact path="/" render={(props) => <Homepage {...props} droneIds={droneIds} selectedDroneId={selectedDroneId} setSelectedDroneId={setSelectedDroneId}/>}/>
+        <Route exact path="/" render={(props) => <Homepage {...props} droneIds={droneIds} selectedDroneId={selectedDroneId} setSelectedDroneId={setSelectedDroneId} lowLight={lowLight}/>}/>
       </Switch>
       <StompJsClient url={BACKEND_URL + '/ws'} topics={['/queue/drones']} onMessage={(msg) => handleWebsocketMessage(msg)}/>
     </ChakraProvider>

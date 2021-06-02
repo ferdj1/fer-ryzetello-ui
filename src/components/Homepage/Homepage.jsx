@@ -28,11 +28,11 @@ function Homepage(props) {
       { props.selectedDroneId && <>
         <CommandHeader selectedDroneId={props.selectedDroneId}/>
         <div className="homepage__joysticks-stream">
-          <VerticalRotationalJoyStick selectedDroneId={props.selectedDroneId} displayExecuteError={displayExecuteError}/>
+          <VerticalRotationalJoyStick selectedDroneId={props.selectedDroneId} displayExecuteError={displayExecuteError} lowLight={props.lowLight}/>
           <div className="homepage__joysticks-stream__stream">
             <FaVideoSlash className="homepage__joysticks-stream__stream__icon"/>
           </div>
-          <FlatPlaneJoyStick selectedDroneId={props.selectedDroneId} displayExecuteError={displayExecuteError}/>
+          <FlatPlaneJoyStick selectedDroneId={props.selectedDroneId} displayExecuteError={displayExecuteError} lowLight={props.lowLight}/>
         </div>
       </>}
     </div>

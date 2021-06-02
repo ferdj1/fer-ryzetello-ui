@@ -5,16 +5,26 @@ import {IoMdArrowRoundBack,
   IoMdArrowRoundDown, IoMdArrowRoundForward, IoMdArrowRoundUp
 } from "react-icons/all";
 import {executeCommand} from "../../apiClient/CommandService";
-import {BACK, FORWARD, LEFT, RIGHT, UP} from "../../constants/CommandConstants";
+import {BACK, FORWARD, LEFT, RC, RIGHT, UP} from "../../constants/CommandConstants";
 import {DEFAULT_DISTANCE} from "../../constants/CommandParameterDefaults";
 import {isCommandValid} from "../../validator/CommandValidator";
 
 function FlatPlaneJoyStick(props) {
   function topClickHandler() {
-    let command = {
-      droneId: props.selectedDroneId,
-      name: FORWARD,
-      params: [DEFAULT_DISTANCE]
+    let command;
+    if (props.lowLight) {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RC,
+        params: [0, DEFAULT_DISTANCE, 0, 0]
+      }
+    } else {
+      command = {
+        droneId: props.selectedDroneId,
+        name: FORWARD,
+        params: [DEFAULT_DISTANCE]
+      }
+
     }
 
     if (!isCommandValid(command)) {
@@ -31,10 +41,19 @@ function FlatPlaneJoyStick(props) {
   }
 
   function rightClickHandler() {
-    let command = {
-      droneId: props.selectedDroneId,
-      name: RIGHT,
-      params: [DEFAULT_DISTANCE]
+    let command;
+    if (props.lowLight) {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RC,
+        params: [DEFAULT_DISTANCE, 0, 0, 0]
+      }
+    } else {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RIGHT,
+        params: [DEFAULT_DISTANCE]
+      }
     }
 
     if (!isCommandValid(command)) {
@@ -51,10 +70,19 @@ function FlatPlaneJoyStick(props) {
   }
 
   function leftClickHandler() {
-    let command = {
-      droneId: props.selectedDroneId,
-      name: LEFT,
-      params: [DEFAULT_DISTANCE]
+    let command;
+    if (props.lowLight) {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RC,
+        params: ['-'+DEFAULT_DISTANCE, 0, 0, 0]
+      }
+    } else {
+      command = {
+        droneId: props.selectedDroneId,
+        name: LEFT,
+        params: [DEFAULT_DISTANCE]
+      }
     }
 
     if (!isCommandValid(command)) {
@@ -71,10 +99,19 @@ function FlatPlaneJoyStick(props) {
   }
 
   function bottomClickHandler() {
-    let command = {
-      droneId: props.selectedDroneId,
-      name: BACK,
-      params: [DEFAULT_DISTANCE]
+    let command;
+    if (props.lowLight) {
+      command = {
+        droneId: props.selectedDroneId,
+        name: RC,
+        params: [0, '-'+DEFAULT_DISTANCE, 0, 0]
+      }
+    } else {
+      command = {
+        droneId: props.selectedDroneId,
+        name: BACK,
+        params: [DEFAULT_DISTANCE]
+      }
     }
 
     if (!isCommandValid(command)) {

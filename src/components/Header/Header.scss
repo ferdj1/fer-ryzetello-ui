@@ -41,4 +41,33 @@
       margin-left: 20px;
     }
   }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    background: #2D3748;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-right: 20px;
+
+    transition: all 0.4s;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-1px);
+    }
+
+    &--active {
+      background: #2b2b2b;
+    }
+
+    &__icon--active {
+      color: #f1b505;
+    }
+
+    & > span {
+      margin-left: 6px;
+    }
+  }
 }
