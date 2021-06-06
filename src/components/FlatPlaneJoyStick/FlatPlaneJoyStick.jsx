@@ -14,15 +14,15 @@ function FlatPlaneJoyStick(props) {
     let command;
     if (props.lowLight) {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RC,
-        params: [0, DEFAULT_DISTANCE, 0, 0]
+        params: [0, props.distance, 0, 0]
       }
     } else {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: FORWARD,
-        params: [DEFAULT_DISTANCE]
+        params: [props.distance]
       }
 
     }
@@ -44,15 +44,15 @@ function FlatPlaneJoyStick(props) {
     let command;
     if (props.lowLight) {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RC,
-        params: [DEFAULT_DISTANCE, 0, 0, 0]
+        params: [props.distance, 0, 0, 0]
       }
     } else {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RIGHT,
-        params: [DEFAULT_DISTANCE]
+        params: [props.distance]
       }
     }
 
@@ -73,15 +73,15 @@ function FlatPlaneJoyStick(props) {
     let command;
     if (props.lowLight) {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RC,
-        params: ['-'+DEFAULT_DISTANCE, 0, 0, 0]
+        params: ['-'+props.distance, 0, 0, 0]
       }
     } else {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: LEFT,
-        params: [DEFAULT_DISTANCE]
+        params: [props.distance]
       }
     }
 
@@ -102,15 +102,15 @@ function FlatPlaneJoyStick(props) {
     let command;
     if (props.lowLight) {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RC,
-        params: [0, '-'+DEFAULT_DISTANCE, 0, 0]
+        params: [0, '-'+props.distance, 0, 0]
       }
     } else {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: BACK,
-        params: [DEFAULT_DISTANCE]
+        params: [props.distance]
       }
     }
 

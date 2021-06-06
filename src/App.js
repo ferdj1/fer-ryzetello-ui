@@ -11,19 +11,33 @@ import {handleWebsocketMessage} from "./websocket/websocket";
 import StompJsClient from 'react-stomp';
 import {useEffect, useState} from "react";
 import {getAllDroneIds, getAllDrones} from "./apiClient/DroneService";
+import DroneControl from "./components/DroneControl/DroneControl";
 
 function App() {
   const [droneIds, setDroneIds] = useState([]);
+  const [droneControls, setDroneControls] = useState(new Map());
   const [loaded, setLoaded] = useState(false);
   const [lowLight, setLowLight] = useState(false);
 
   const [selectedDroneId, setSelectedDroneId] = useState(null);
+  const [currentDroneControl, setCurrentDroneControl] = useState(null);
 
   const toast = useToast();
 
   useEffect(() => {
     loadAllDrones();
+
+    let droneControlsMap = new Map();
+    droneIds.forEach(droneId => {
+      droneControlsMap.set(droneId, <DroneControl droneId={droneId} lowLight={false}/>);
+    })
+
+    setDroneControls(droneControlsMap);
   }, []);
+
+  useEffect(() => {
+    setCurrentDroneControl(droneControls.get(selectedDroneId));
+  }, [droneControls, selectedDroneId]);
 
   function loadAllDrones() {
     setLoaded(false);
@@ -47,14 +61,17 @@ function App() {
         console.log('DRONES_ADDED');
         let addedDroneIds = message.data;
         setDroneIds([...droneIds, ...addedDroneIds]);
+        addedDroneIds.forEach(droneId => droneControls.set(droneId, <DroneControl droneId={droneId} selectedDroneId={selectedDroneId} lowLight={false}/>));
         break;
       case 'DRONES_REMOVED':
         console.log('DRONES_REMOVED');
         let removedDroneIds = message.data;
         setDroneIds(droneIds.filter(droneId => !removedDroneIds.includes(droneId)));
+        removedDroneIds.forEach(droneId => droneControls.delete(droneId));
 
         if (removedDroneIds.includes(selectedDroneId)) {
           setSelectedDroneId("");
+          setCurrentDroneControl(null);
         }
 
         break;
@@ -63,9 +80,9 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Header lowLight={lowLight} setLowLight={setLowLight}/>
+      <Header lowLight={false} setLowLight={setLowLight}/>
       <Switch>
-        <Route exact path="/" render={(props) => <Homepage {...props} droneIds={droneIds} selectedDroneId={selectedDroneId} setSelectedDroneId={setSelectedDroneId} lowLight={lowLight}/>}/>
+        <Route exact path="/" render={(props) => <Homepage {...props} droneIds={droneIds} selectedDroneId={selectedDroneId} setSelectedDroneId={setSelectedDroneId} currentDroneControl={currentDroneControl} lowLight={false}/>}/>
       </Switch>
       <StompJsClient url={BACKEND_URL + '/ws'} topics={['/queue/drones']} onMessage={(msg) => handleWebsocketMessage(msg)}/>
     </ChakraProvider>

@@ -12,15 +12,15 @@ function VerticalRotationalJoyStick(props) {
     let command;
     if (props.lowLight) {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RC,
-        params: [0, 0, DEFAULT_DISTANCE, 0]
+        params: [0, 0, props.distance, 0]
       }
     } else {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: UP,
-        params: [DEFAULT_DISTANCE]
+        params: [props.distance]
       }
     }
 
@@ -39,9 +39,9 @@ function VerticalRotationalJoyStick(props) {
 
   function rightClickHandler() {
     let command = {
-      droneId: props.selectedDroneId,
+      droneId: props.droneId,
       name: CW,
-      params: [DEFAULT_TURN_DEGREES]
+      params: [props.degrees]
     }
 
     if (!isCommandValid(command)) {
@@ -59,9 +59,9 @@ function VerticalRotationalJoyStick(props) {
 
   function leftClickHandler() {
     let command = {
-      droneId: props.selectedDroneId,
+      droneId: props.droneId,
       name: CCW,
-      params: [DEFAULT_TURN_DEGREES]
+      params: [props.degrees]
     }
 
     if (!isCommandValid(command)) {
@@ -81,15 +81,15 @@ function VerticalRotationalJoyStick(props) {
     let command;
     if (props.lowLight) {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: RC,
-        params: [0, 0, '-'+DEFAULT_DISTANCE, 0]
+        params: [0, 0, '-'+props.distance, 0]
       }
     } else {
       command = {
-        droneId: props.selectedDroneId,
+        droneId: props.droneId,
         name: DOWN,
-        params: [DEFAULT_DISTANCE]
+        params: [props.distance]
       }
     }
 
