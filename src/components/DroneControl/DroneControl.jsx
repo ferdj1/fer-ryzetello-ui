@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {getWebSocketPort} from "../../apiClient/DronePortService";
 import {useToast} from "@chakra-ui/react";
 import {DEFAULT_DISTANCE, DEFAULT_TURN_DEGREES} from "../../constants/CommandParameterDefaults";
+import {RT_HOST} from "../../constants/ApiConstants";
 
 function DroneControl(props) {
 
@@ -78,7 +79,7 @@ function DroneControl(props) {
           <div className="homepage__joysticks-stream__stream--active">
             {streamWsPort && <JsmpegPlayer
               wrapperClassName="video-wrapper"
-              videoUrl={"ws://127.0.0.1:" + streamWsPort}
+              videoUrl={"ws://" + RT_HOST + ":" + streamWsPort}
               //videoUrl={"ws://127.0.0.1:" + 8082}
               options={videoOptions}
               overlayOptions={videoOverlayOptions}
