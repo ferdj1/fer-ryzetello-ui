@@ -39,6 +39,16 @@ function App() {
     setCurrentDroneControl(droneControls.get(selectedDroneId));
   }, [droneControls, selectedDroneId]);
 
+
+  useEffect(() => {
+    let droneControlsMap = new Map();
+    droneIds.forEach(droneId => {
+      droneControlsMap.set(droneId, <DroneControl droneId={droneId} lowLight={false}/>);
+    })
+
+    setDroneControls(droneControlsMap);
+  }, [droneIds]);
+
   function loadAllDrones() {
     setLoaded(false);
     getAllDroneIds().then(response => {
