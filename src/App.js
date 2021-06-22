@@ -43,7 +43,6 @@ function App() {
     setLoaded(false);
     getAllDroneIds().then(response => {
       setDroneIds(response);
-      response.forEach(droneId => droneControls.set(droneId, <DroneControl droneId={droneId} selectedDroneId={selectedDroneId} lowLight={false}/>));
       setLoaded(true);
     }).catch(error => {
       toast({
